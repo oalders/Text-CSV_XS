@@ -249,9 +249,6 @@ static const xs_error_t xs_errors[] =  {
 
 #define MY_CXT_KEY "Text::CSV_XS::_guts" XS_VERSION
 typedef struct {
-#ifdef USE_ITHREADS
-    tTHX owner;
-#endif
     int last_error;
     SV  *m_getline, *m_print;
     } my_cxt_t;
@@ -1910,9 +1907,6 @@ BOOT:
     MY_CXT_INIT;
     MY_CXT.m_getline = newSVpvs ("getline");
     MY_CXT.m_print   = newSVpvs ("print");
-#ifdef USE_ITHREADS
-    MY_CXT.owner     = aTHX;
-#endif
     }
 
 void
