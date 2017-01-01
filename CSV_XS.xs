@@ -1910,6 +1910,16 @@ BOOT:
     }
 
 void
+CLONE (...)
+  PPCODE:
+    MY_CXT_CLONE;
+    MY_CXT.m_getline = newSVpvs ("getline");
+    MY_CXT.m_print   = newSVpvs ("print");
+
+    XSRETURN_UNDEF;
+    /* XS CLONE */
+
+void
 SetDiag (self, xse, ...)
     SV		*self
     int		 xse
